@@ -4,7 +4,7 @@ function configureListeners() {
    for (var i = 0; i < images.length; i++) {
       let currentImage = images[i];
       currentImage.addEventListener('mouseover', function (e) {
-         getProductInfo(e.target).updateColorNameAndPrice();
+         getProductInfo(e.target).setColorNameAndPrice();
          addOpacity(e)
       });
       currentImage.addEventListener('mouseout', function (e) {
@@ -74,13 +74,12 @@ function getProductInfo(element) {
 
    return {
       
-      updateColorNameAndPrice: function update() {
+      setColorNameAndPrice: () => {
          colorNameElement.textContent = colorName
          colorPriceElement.textContent = price;
       },
 
-      removeColorNameAndPrice: function remove() {
-         
+      removeColorNameAndPrice: () => {
          colorNameElement.textContent = '';
          colorPriceElement.textContent = '';
       }
