@@ -4,11 +4,11 @@ function configureListeners() {
    for (var i = 0; i < images.length; i++) {
       let currentImage = images[i];
       currentImage.addEventListener('mouseover', function (e) {
-         getProductInfo(e).updateColorNameAndPrice();
+         getProductInfo(e.target).updateColorNameAndPrice();
          addOpacity(e)
       });
       currentImage.addEventListener('mouseout', function (e) {
-         getProductInfo().updateColorNameAndPrice();
+         getProductInfo(e.target).removeColorNameAndPrice();
          removeOpacity(e)
       });
    }
@@ -23,10 +23,9 @@ function removeOpacity(event) {
    event.preventDefault();
 }
 
-function getProductInfo(event) {
+function getProductInfo(element) {
 
-   let elementId = event ? event.target.id : '';
-
+   let elementId = element.id
    let price;
    let colorName;
 
@@ -68,17 +67,22 @@ function getProductInfo(event) {
          colorName = 'Solid Yellow';
          break;
       default:
-         price = '';
-         colorName = '';
          break;
    }
 
+   let colorNameElement = document.querySelector('#color-name');
+   let colorPriceElement = document.querySelector('#color-price');
+
    return {
       updateColorNameAndPrice: function update() {
-         let colorNameElement = document.querySelector('#color-name');
          colorNameElement.textContent = colorName
-         let colorPriceElement = document.querySelector('#color-price');
          colorPriceElement.textContent = price;
+      },
+
+      removeColorNameAndPrice: function remove() {
+         
+         colorNameElement.textContent = '';
+         colorPriceElement.textContent = '';
       }
    }
 
