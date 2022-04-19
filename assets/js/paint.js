@@ -67,13 +67,13 @@ function getProductInfo(element) {
          colorName = 'Solid Yellow';
          break;
       default:
-         break;
    }
 
    let colorNameElement = document.querySelector('#color-name');
    let colorPriceElement = document.querySelector('#color-price');
 
    return {
+      
       updateColorNameAndPrice: function update() {
          colorNameElement.textContent = colorName
          colorPriceElement.textContent = price;
