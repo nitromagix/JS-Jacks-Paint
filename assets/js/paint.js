@@ -4,11 +4,11 @@ function configureListeners() {
    for (var i = 0; i < images.length; i++) {
       let currentImage = images[i];
       currentImage.addEventListener('mouseover', function (e) {
-         getProductInfo(e.target).setColorNameAndPrice();
+         getProductInfo(e.target).setColorNameAndPriceUIElements();
          addOpacity(e)
       });
       currentImage.addEventListener('mouseout', function (e) {
-         getProductInfo(e.target).removeColorNameAndPrice();
+         getProductInfo(e.target).clearColorNameAndPriceUIElements();
          removeOpacity(e)
       });
    }
@@ -51,7 +51,7 @@ function getProductInfo(element) {
          colorName = 'Solid White';
          break;
       case 'pn6':
-         price = '$4.99';
+         price = '$24.99';
          colorName = 'Solid Black';
          break;
       case 'pn7':
@@ -74,12 +74,12 @@ function getProductInfo(element) {
 
    return {
       
-      setColorNameAndPrice: () => {
+      setColorNameAndPriceUIElements: () => {
          colorNameElement.textContent = colorName
          colorPriceElement.textContent = price;
       },
 
-      removeColorNameAndPrice: () => {
+      clearColorNameAndPriceUIElements: () => {
          colorNameElement.textContent = '';
          colorPriceElement.textContent = '';
       }
